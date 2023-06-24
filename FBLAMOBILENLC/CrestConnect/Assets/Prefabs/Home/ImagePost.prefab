@@ -110,9 +110,9 @@ RectTransform:
   m_Father: {fileID: 2964211371065693871}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 540, y: -190}
   m_SizeDelta: {x: 1080, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2104414870885151505
@@ -147,8 +147,8 @@ MonoBehaviour:
     Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
     Ipsum Lorem Ipsum '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c21cb2b3cbe9af846ba79fb5eebe9268, type: 2}
+  m_sharedMaterial: {fileID: -7237415159333536816, guid: c21cb2b3cbe9af846ba79fb5eebe9268, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 50
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -302,8 +302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 291.99988, y: -35}
-  m_SizeDelta: {x: 225.4798, y: 41.3599}
+  m_AnchoredPosition: {x: 310.04578, y: -34.1407}
+  m_SizeDelta: {x: 261.5716, y: 39.6411}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7149990785146052755
 CanvasRenderer:
@@ -360,10 +360,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.1
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 2
@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 7327442685577341723}
   - component: {fileID: 8049992053718797416}
   - component: {fileID: 906893887669902140}
+  - component: {fileID: 1954055610014175618}
   m_Layer: 5
   m_Name: ImagePost
   m_TagString: Untagged
@@ -501,6 +502,14 @@ MonoBehaviour:
   TimeText: {fileID: 2211275107039023007}
   PostImage: {fileID: 3267822029537219353}
   PostText: {fileID: 2104414870885151510}
+--- !u!222 &1954055610014175618
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545726165636168387}
+  m_CullTransparentMesh: 1
 --- !u!1 &4927806160204041043
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,9 +755,9 @@ RectTransform:
   m_Father: {fileID: 2964211371065693871}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 540, y: -190}
   m_SizeDelta: {x: 1080, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7645929471522534263

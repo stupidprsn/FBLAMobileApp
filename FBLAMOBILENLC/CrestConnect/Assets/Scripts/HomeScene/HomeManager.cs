@@ -35,8 +35,8 @@ public class HomeManager : MonoBehaviour
         prevPanel = defaultPanel;
         EnablePanels();
 
-        profilePicture = selectImage.ConvertSprite(fileManager.AccountFile.Data.ProfilePicture);
-        settingsButton.sprite = profilePicture;
+        //profilePicture = selectImage.ConvertSprite(fileManager.AccountFile.Data.ProfilePicture);
+        //settingsButton.sprite = profilePicture;
     }
 
     public void ResetScreens()

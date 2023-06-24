@@ -122,7 +122,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5936411764959319061}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.10908905
+  m_Size: 0.10713381
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -845,8 +845,8 @@ MonoBehaviour:
     By
     email: crestconnectmobileapp@gmail.com'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c21cb2b3cbe9af846ba79fb5eebe9268, type: 2}
+  m_sharedMaterial: {fileID: -7237415159333536816, guid: c21cb2b3cbe9af846ba79fb5eebe9268, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
