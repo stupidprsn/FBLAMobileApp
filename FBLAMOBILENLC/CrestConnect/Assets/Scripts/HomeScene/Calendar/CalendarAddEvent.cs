@@ -1,12 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CalendarAddEvent : MonoBehaviour
 {
+    [SerializeField] private HomeManager homeManager;
+    [SerializeField] private GameObject calendarHome;
+    [SerializeField] private NewCalendar newCalendar;
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_InputField titleInput, locationInput, timeInput, notesInput;
     [SerializeField] private TMP_Dropdown selectClassDropdown, AMPMDropdown;
@@ -38,43 +39,55 @@ public class CalendarAddEvent : MonoBehaviour
 
         int classID = account.OwnedClasses[selectClassDropdown.value];
 
-        CalendarEvent calendarEvent = new CalendarEvent(
+        DateTime time;
+        if (timeText.Equals(string.Empty))
+        {
+            time = newCalendar.daySelected;
+        }
+        else
+        {
+            int year = newCalendar.daySelected.Year;
+            int month = newCalendar.daySelected.Month;
+            int day = newCalendar.daySelected.Day;
+            string[] timeSelected = timeText.Split(":");
+
+            int hour = int.Parse(timeSelected[0]);
+            int minute = int.Parse(timeSelected[1]);
+
+            if (AMPM == 0)
+            {
+                if (hour == 12) hour = 0;
+            }
+            else
+            {
+                hour += 12;
+            }
+            time = new DateTime(year, month, day, hour, minute, 0);
+        }
+
+        CalendarEvent calendarEvent = new (
             titleText,
+            classID,
             locationText,
-            new DateTime(),
-            notesText);
+            time,
+            notesText
+        );
 
-        //if (imageSelected)
-        //{
-        //    feedPost = new FeedPost(
-        //        classID,
-        //        account.DisplayName,
-        //        account.Username,
-        //        text,
-        //        DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"),
-        //        rawImage
-        //        );
-        //}
-        //else
-        //{
-        //    feedPost = new FeedPost(
-        //        classID,
-        //        account.DisplayName,
-        //        account.Username,
-        //        text,
-        //        DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt")
-        //    );
-        //}
-        //imageSelected = false;
-        //fileManager.CreatePost(feedPost);
+        fileManager.CreateCalendarEvent(calendarEvent);
+        newCalendar.DateSelect(time.Day);
 
-        //homeManger.ResetScreens();
-        //homeManger.ChangePanel(feedPanel);
+        homeManager.ResetScreens();
+        homeManager.ChangePanel(calendarHome);
     }
 
     private void Start()
     {
         fileManager = SingletonManager.Instance.FileManagerInstance;
         LoadClassDropdown();
+    }
+
+    private void OnEnable()
+    {
+        title.SetText("Add Event " + newCalendar.daySelected.ToString("d"));
     }
 }

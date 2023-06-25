@@ -13,9 +13,9 @@ using UnityEngine.UI;
 public class DialogueBox : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private GameObject dialogueBox, miscGameObject;
     [SerializeField] private TMP_Text dialogueText;
-    [SerializeField] private Button button;
+    [SerializeField] private Button button, miscButton;
 
     private bool hasAction;
 
@@ -41,6 +41,13 @@ public class DialogueBox : MonoBehaviour
         dialogueText.SetText(msg);
         dialogueBox.SetActive(true);
     }
+    
+    public void EnableMisc(Sprite image, UnityAction call)
+    {
+        miscGameObject.SetActive(true);
+        miscGameObject.GetComponent<Image>().sprite = image;
+        miscButton.onClick.AddListener(call);
+    }
 
     public void Disable()
     {
@@ -52,6 +59,7 @@ public class DialogueBox : MonoBehaviour
                 Disable();
             });
         }
+        miscGameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 }

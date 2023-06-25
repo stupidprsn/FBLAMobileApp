@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using System.IO;
 using UnityEngine.UI;
 
 /// <summary>
@@ -20,7 +21,6 @@ public class CustomizeAccount : MonoBehaviour
     [SerializeField] private LoginManager loginManager;
     [SerializeField] private TMP_InputField displayNameInput;
     [SerializeField] private GameObject uploadButton, imagePreview;
-    [SerializeField] private SelectImage selectImage;
     [SerializeField] private Sprite circle;
     [SerializeField] private DialogueBox dialogueBox;
 
@@ -31,20 +31,29 @@ public class CustomizeAccount : MonoBehaviour
     /// </summary>
     public void UploadImageButton()
     {
-        StartCoroutine(UploadImageCoroutine());
-    }
+        CheckPermissions();
 
-    private IEnumerator UploadImageCoroutine()
-    {
-        profilePicture = selectImage.Select();
-        yield return new WaitUntil(() => profilePicture != null);
+        if (NativeGallery.IsMediaPickerBusy()) return;
 
-        Sprite profile = selectImage.ConvertSprite(profilePicture);
-        imagePreview.GetComponent<Image>().sprite = profile;
-        imagePreview.SetActive(true);
+        Texture2D ImageTexture2D;
+        Sprite ImageSprite;
 
-        uploadButton.GetComponent<Image>().sprite = circle;
-        uploadButton.GetComponent<Mask>().enabled = true;
+        NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
+        {
+            Debug.Log("Image path: " + path);
+            if (path != null)
+            {
+                profilePicture = File.ReadAllBytes(path);
+                ImageTexture2D = NativeGallery.LoadImageAtPath(path);
+                ImageSprite = Sprite.Create(ImageTexture2D, new Rect(0, 0, ImageTexture2D.width, ImageTexture2D.height), new Vector2(0.5f, 0.5f));
+
+                imagePreview.GetComponent<Image>().sprite = ImageSprite;
+                imagePreview.SetActive(true);
+
+                uploadButton.GetComponent<Image>().sprite = circle;
+                uploadButton.GetComponent<Mask>().enabled = true;
+            }
+        });
     }
 
     /// <summary>
@@ -66,9 +75,9 @@ public class CustomizeAccount : MonoBehaviour
         }
     }
 
-    private bool VerifyProfile(Sprite profile)
+    private bool VerifyProfile()
     {
-        if(profile != null)
+        if (profilePicture != null)
         {
             return true;
         }
@@ -82,10 +91,29 @@ public class CustomizeAccount : MonoBehaviour
     public void NextButton()
     {
         string displayName = displayNameInput.text;
-        if (!VerifyDisplayName(displayName) || profilePicture == null) return;
+        if (!VerifyDisplayName(displayName) || !VerifyProfile())
+        {
+            return;
+        }
+
         loginManager.NewAccount.DisplayName = displayName;
         loginManager.NewAccount.ProfilePicture = profilePicture;
 
         loginManager.ChangePanel(nextPanel);
+    }
+
+    private void CheckPermissions()
+    {
+        switch (NativeFilePicker.CheckPermission())
+        {
+            case (NativeFilePicker.Permission.Denied):
+                NativeFilePicker.OpenSettings();
+                break;
+            case (NativeFilePicker.Permission.ShouldAsk):
+                NativeFilePicker.RequestPermission();
+                break;
+            case (NativeFilePicker.Permission.Granted):
+                break;
+        }
     }
 }

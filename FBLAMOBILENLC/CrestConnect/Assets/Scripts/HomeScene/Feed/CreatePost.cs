@@ -15,12 +15,14 @@ using TMPro;
 public class CreatePost : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private RectTransform feedContent;
     [SerializeField] private Image buttonImage;
     [SerializeField] private TMP_InputField textInput;
     [SerializeField] private HomeManager homeManger;
     [SerializeField] private GameObject feedPanel;
     [SerializeField] private TMP_Dropdown selectClassDropdown;
     [SerializeField] private SelectImage selectImage;
+    [SerializeField] private DialogueBox dialogueBox; 
 
     private bool imageSelected = false;
     private FileManager fileManager;
@@ -41,20 +43,54 @@ public class CreatePost : MonoBehaviour
         selectClassDropdown.AddOptions(ownedClassesString);
     }
 
+    private void CheckPermissions()
+    {
+        switch (NativeFilePicker.CheckPermission())
+        {
+            case (NativeFilePicker.Permission.Denied):
+                NativeFilePicker.OpenSettings();
+                break;
+            case (NativeFilePicker.Permission.ShouldAsk):
+                NativeFilePicker.RequestPermission();
+                break;
+            case (NativeFilePicker.Permission.Granted):
+                break;
+        }
+    }
+
     public void SelectImageButton()
     {
-        rawImage = selectImage.Select();
-        if (rawImage is null) return;
-        newSprite = selectImage.ConvertSprite(rawImage);
-        buttonImage.sprite = newSprite;
+        CheckPermissions();
 
-        imageSelected = true;
+        if (NativeGallery.IsMediaPickerBusy()) return;
+
+        NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
+        {
+            Texture2D texture;
+            Debug.Log("Image path: " + path);
+            if (path != null)
+            {
+                rawImage = File.ReadAllBytes(path);
+                texture = NativeGallery.LoadImageAtPath(path);
+                buttonImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+                imageSelected = true;
+            }
+        });
+
+
     }
 
     public void FinalizePost()
     {
-        Account account = fileManager.AccountFile.Data;
+        Account account = SingletonManager.Instance.FileManagerInstance.AccountFile.Data;
         string text = textInput.text;
+
+        if(text.Equals(string.Empty) && !imageSelected)
+        {
+            dialogueBox.Enable("Please fill out the post information.");
+        }
+
         int classID = account.OwnedClasses[selectClassDropdown.value];
         FeedPost feedPost;
         if (imageSelected)
@@ -83,11 +119,14 @@ public class CreatePost : MonoBehaviour
 
         homeManger.ResetScreens();
         homeManger.ChangePanel(feedPanel);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(feedContent.GetComponent<RectTransform>());
+
     }
 
     private void Start()
     {
         fileManager = SingletonManager.Instance.FileManagerInstance;
+        selectImage = SingletonManager.Instance.SelectImageInstance;
         LoadClassDropdown();
     }
 }

@@ -35,6 +35,7 @@ public class SingletonManager : MonoBehaviour
     [SerializeField] private TransitionManager transitionManager;
     [SerializeField] private FileManager fileManager;
     [SerializeField] private AccountManager accountManager;
+    [SerializeField] private SelectImage selectImage;
 
     public TransitionManager TransitionManagerInstance 
     { 
@@ -57,6 +58,14 @@ public class SingletonManager : MonoBehaviour
         get
         {
             return accountManager;
+        }
+    }
+
+    public SelectImage SelectImageInstance
+    {
+        get
+        {
+            return selectImage;
         }
     }
 }

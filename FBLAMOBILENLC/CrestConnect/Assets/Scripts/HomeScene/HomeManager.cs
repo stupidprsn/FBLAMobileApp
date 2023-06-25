@@ -13,13 +13,13 @@ public class HomeManager : MonoBehaviour
     [HideInInspector] public Sprite profilePicture;
 
     [SerializeField] private GameObject defaultPanel, safeArea;
-    [SerializeField] private SelectImage selectImage;
-    [SerializeField] private Image settingsButton;
+    [SerializeField] private Image profileImage;
 
     [SerializeField] private ClassesPage classesPage;
     [SerializeField] private CreatePost createPost;
     [SerializeField] private RenderFeed renderFeed;
 
+    private SelectImage selectImage;
     private FileManager fileManager;
     private TransitionManager transitionManager;
     private AccountManager accountManager;
@@ -30,17 +30,23 @@ public class HomeManager : MonoBehaviour
         fileManager = SingletonManager.Instance.FileManagerInstance;
         transitionManager = SingletonManager.Instance.TransitionManagerInstance;
         accountManager = SingletonManager.Instance.AccountManagerInstance;
+        selectImage = SingletonManager.Instance.SelectImageInstance;
 
         currentPanel = defaultPanel;
         prevPanel = defaultPanel;
         EnablePanels();
 
-        //profilePicture = selectImage.ConvertSprite(fileManager.AccountFile.Data.ProfilePicture);
-        //settingsButton.sprite = profilePicture;
+        Debug.Log("reload home");
+        ResetScreens();
+
+
     }
 
     public void ResetScreens()
     {
+        profilePicture = selectImage.ConvertSprite(fileManager.AccountFile.Data.ProfilePicture);
+        profileImage.sprite = profilePicture;
+
         accountManager.RefreshClasses();
         classesPage.LoadClassesList();
         createPost.LoadClassDropdown();
@@ -103,4 +109,8 @@ public class HomeManager : MonoBehaviour
         currentPanel = defaultPanel;
     }
 
+    private void Awake()
+    {
+
+    }
 }

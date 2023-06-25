@@ -117,24 +117,31 @@ public class FileManager : MonoBehaviour
 
     public void CreateCalendarEvent(CalendarEvent cEvent)
     {
+        DateTime timelessDate = new DateTime(cEvent.time.Year, cEvent.time.Month, cEvent.time.Day);
         int currentIndex = CalendarListFile.Data.currentIndex;
         CalendarListFile.Data.currentIndex++;
-        if(CalendarListFile.Data.calendarDictionary.ContainsKey(cEvent.time))
+        if(CalendarListFile.Data.calendarDictionary.ContainsKey(timelessDate))
         {
-            CalendarListFile.Data.calendarDictionary[cEvent.time].Add(currentIndex.ToString());
+            CalendarListFile.Data.calendarDictionary[timelessDate].Add(currentIndex.ToString());
         }
         else
         {
-            CalendarListFile.Data.calendarDictionary.Add(cEvent.time, new List<string>() { currentIndex.ToString() });
+            CalendarListFile.Data.calendarDictionary.Add(timelessDate, new List<string>() { currentIndex.ToString() });
         }
         CalendarListFile.Save();
 
         DataFile<CalendarEvent> calendarEvent = new("Calendar", currentIndex.ToString() + ".fbla");
         calendarEvent.Save(cEvent);
+
+        foreach (var i in CalendarListFile.Data.calendarDictionary)
+        {
+            Debug.Log(i.Key + ": " + i.Value);
+        }
     } 
 
     public List<CalendarEvent> GetCalendarEvents(DateTime time)
     {
+
         if (!CalendarListFile.Data.calendarDictionary.ContainsKey(time)) return null;
 
         List<CalendarEvent> calendarEvents = new();
