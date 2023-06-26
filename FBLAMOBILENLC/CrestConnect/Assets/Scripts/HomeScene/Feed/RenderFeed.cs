@@ -77,7 +77,7 @@ public class RenderFeed : MonoBehaviour
                 newPost = Instantiate(imgPrefab, content);
                 newPost.SetActive(false);
                 postReferences = newPost.GetComponent<PostReferences>();
-                postReferences.PostImage.sprite = selectImage.ConvertSprite(feedPost.ImgID);
+                postReferences.PostImage.sprite = SingletonManager.Instance.SelectImageInstance.ConvertSprite(feedPost.ImgID);
                 postReferences.PostImage.SetNativeSize();
                 h = postReferences.PostImage.rectTransform.rect.height;
                 w = postReferences.PostImage.rectTransform.rect.width;
