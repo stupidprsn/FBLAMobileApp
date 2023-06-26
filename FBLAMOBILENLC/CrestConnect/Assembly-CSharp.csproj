@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Core\SingletonManager.cs" />
     <Compile Include="Assets\Scripts\DialogueBox.cs" />
     <Compile Include="Assets\Scripts\LoginScene\ResetPassword.cs" />
+    <Compile Include="Assets\Scripts\CrossfadeAnimation.cs" />
     <Compile Include="Assets\Scripts\HomeScene\Settings\SettingsHome.cs" />
     <Compile Include="Assets\Scripts\HomeScene\Feed\CreatePost.cs" />
     <Compile Include="Assets\Scripts\Core\Data\DataTypes\Account\AccountDictionary.cs" />
@@ -115,7 +116,6 @@
     <Compile Include="Assets\Scripts\Core\Data\DataTypes\Account\ClassDictionary.cs" />
     <Compile Include="Assets\Scripts\HomeScene\Class\JoinClass.cs" />
     <Compile Include="Assets\Scripts\HomeScene\Settings\ReportBug.cs" />
-    <Compile Include="Assets\Scripts\CrossfadeAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
