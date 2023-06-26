@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{5757C865-5772-B0D1-085D-C08EC2B7B8FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeFilePicker.Runtime", "NativeFilePicker.Runtime.csproj", "{CA3191E6-F529-8810-83D0-133F9294DCB8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeGallery.Runtime", "NativeGallery.Runtime.csproj", "{BA9DFDAE-BB89-ED91-30F1-7769FBDA2CE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeFilePicker.Runtime", "NativeFilePicker.Runtime.csproj", "{CA3191E6-F529-8810-83D0-133F9294DCB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeFilePicker.Editor", "NativeFilePicker.Editor.csproj", "{121ABA3E-3E9A-C84A-22A2-9D42105C99FC}"
 EndProject
@@ -21,14 +21,14 @@ Global
 		{5757C865-5772-B0D1-085D-C08EC2B7B8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5757C865-5772-B0D1-085D-C08EC2B7B8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5757C865-5772-B0D1-085D-C08EC2B7B8FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA3191E6-F529-8810-83D0-133F9294DCB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA3191E6-F529-8810-83D0-133F9294DCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA3191E6-F529-8810-83D0-133F9294DCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA3191E6-F529-8810-83D0-133F9294DCB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BA9DFDAE-BB89-ED91-30F1-7769FBDA2CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA9DFDAE-BB89-ED91-30F1-7769FBDA2CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA9DFDAE-BB89-ED91-30F1-7769FBDA2CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA9DFDAE-BB89-ED91-30F1-7769FBDA2CE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA3191E6-F529-8810-83D0-133F9294DCB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA3191E6-F529-8810-83D0-133F9294DCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA3191E6-F529-8810-83D0-133F9294DCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA3191E6-F529-8810-83D0-133F9294DCB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{121ABA3E-3E9A-C84A-22A2-9D42105C99FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{121ABA3E-3E9A-C84A-22A2-9D42105C99FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{121ABA3E-3E9A-C84A-22A2-9D42105C99FC}.Release|Any CPU.ActiveCfg = Release|Any CPU

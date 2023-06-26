@@ -56,7 +56,7 @@ public class CreateClass : MonoBehaviour
 
     private bool ValidateName(string name)
     {
-        if (name.Length > 3 && name.Length < 17)
+        if (name.Length > 3 && name.Length < 33)
         {
             return true;
         }

@@ -159,7 +159,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.PeriwinkleStudios.CrestConnect
     Lumin: com.DefaultCompany.com.unity.template.mobile2D
-    Standalone: com.DefaultCompany.com.unity.template.mobile2D
+    Standalone: com.PeriwinkleStudios.CrestConnect
     iPhone: com.PeriwinkleStudios.CrestConnect
     tvOS: com.DefaultCompany.com.unity.template.mobile2D
   buildNumber:

@@ -25,7 +25,7 @@ public class TransitionManager : MonoBehaviour
         if (isTransitioning) return;
         isTransitioning = true;
 
-        SceneManager.LoadScene((int)scene);
+        FindObjectOfType<CrossfadeAnimation>().LoadNextScene();
         isTransitioning = false;
     }
 }

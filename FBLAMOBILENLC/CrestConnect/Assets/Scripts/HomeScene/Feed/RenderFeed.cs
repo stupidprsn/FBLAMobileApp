@@ -59,7 +59,7 @@ public class RenderFeed : MonoBehaviour
 
             // Check that the post applies to the user.
             renderPost = false;
-            foreach (int j in accountManager.AllClasses)
+            foreach (int j in SingletonManager.Instance.AccountManagerInstance.AllClasses)
             {
                 if (j == feedPost.ClassID)
                 {
