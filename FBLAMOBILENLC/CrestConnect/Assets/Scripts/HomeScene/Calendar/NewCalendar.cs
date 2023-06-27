@@ -188,6 +188,7 @@ public class NewCalendar : MonoBehaviour
                                 displayText += "; " + studentAbsence.notes;
                             }
                         }
+                        dialogueBox.Enable(displayText);
                     });
                     newEvent.transform.SetAsFirstSibling();
                 }

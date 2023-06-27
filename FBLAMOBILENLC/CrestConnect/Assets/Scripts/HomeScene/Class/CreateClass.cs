@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using System;
+using System.Collections.Generic;
 
 /// <summary>
 ///     Manages creating classes.
@@ -48,7 +48,19 @@ public class CreateClass : MonoBehaviour
         // Create class
         DataFile<AClass> newClass = fileManager.GetClassFile(joinCode);
 
-        newClass.Save(new AClass(joinCode, fileManager.AccountFile.Data.Username, newName));
+        AClass aClass = new AClass(joinCode, fileManager.AccountFile.Data.Username, newName);
+        if(newName.Equals("FBLA"))
+        {
+            aClass.text = new List<string>()
+            {
+                "Description",
+                "Future Business Leaders of America (FBLA) is a dynamic and prestigious organization that empowers young individuals to become future leaders in the business world. FBLA provides a platform for students to develop essential skills such as leadership, communication, and entrepreneurship. With a strong emphasis on practical experience, FBLA offers a range of activities including conferences, workshops, and competitions where members can showcase their talents and network with industry professionals. By fostering a supportive and innovative community, FBLA cultivates a passion for business and prepares its members for successful careers in various fields. Through its dedication to education and leadership development, FBLA shapes the next generation of business leaders with confidence, integrity, and vision.",
+                "How to Join",
+                "Applications for new and existing members open in October of every school year. Contact Jasmine Lane for more details.\r\n"
+            };
+        }
+
+        newClass.Save(aClass);
         dialogueBox.Enable(SuccessText + joinCode.ToString(), () => { homeManager.ChangePanel(classesPanel); });
 
         homeManager.ResetScreens();

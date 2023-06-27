@@ -8,9 +8,7 @@ public class AClass
     public string owner;
     public string name;
     public List<string> members;
-
-    public string description;
-    public string howToJoin;
+    public List<string> text;
     public List<SocialLink> socials;
 
     public AClass(int joincode, string owner, string name) 
@@ -19,9 +17,10 @@ public class AClass
         this.owner = owner;
         this.name = name;
         members = new List<string>();
-
-        description = string.Empty;
-        howToJoin = string.Empty;
+        text = new List<string>()
+        {
+            "Class has not been set up yet!"
+        };
         socials = new List<SocialLink>();
     }
 }

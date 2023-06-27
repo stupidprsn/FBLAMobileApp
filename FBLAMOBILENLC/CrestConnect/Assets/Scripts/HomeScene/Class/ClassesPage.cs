@@ -51,6 +51,7 @@ public class ClassesPage : MonoBehaviour
             references.ClassCode.SetText(i.ToString());
             references.Button.onClick.AddListener(() =>
             {
+                Debug.Log(i);
                 ClassDetailButton(i);
             });
 

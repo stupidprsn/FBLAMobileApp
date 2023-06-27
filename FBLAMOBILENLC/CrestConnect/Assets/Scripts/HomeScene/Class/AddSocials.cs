@@ -38,7 +38,6 @@ public class AddSocials : MonoBehaviour
             d.value = (int)s.SocialType;
             d.onValueChanged.AddListener((int i) =>
             {
-                //s.SocialType = SocialTypes
             });
 
             newLink.GetComponentInChildren<TMP_InputField>().text = s.SocialURL;

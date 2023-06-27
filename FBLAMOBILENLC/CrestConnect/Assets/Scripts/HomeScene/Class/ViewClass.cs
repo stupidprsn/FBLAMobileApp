@@ -17,35 +17,77 @@ public class ViewClass : MonoBehaviour
     [SerializeField] private Sprite[] socialImgs;
 
     [Header("References")]
-    [SerializeField] private TMP_Text classTitle, descriptionTitle, descriptionText, JoinTitle, joinText;
-    [SerializeField] private Transform socialsContent;
-    [SerializeField] private GameObject socialPrefab, editButton;
+    [SerializeField] private TMP_Text classTitle;
+    [SerializeField] private Transform socialsContent, content, socialTitle;
+    [SerializeField] private GameObject socialPrefab, editButton, titlePrefab, textPrefab;
+    [SerializeField] private EditClass editClass;
 
     private FileManager fileManager;
-    
+
+    int joinCode;
+
+    public void EditButton()
+    {
+        editClass.OpenEditClass(joinCode);
+        FindObjectOfType<HomeManager>().ChangePanel(editClass.gameObject);
+    }
+
     /// <summary>
     ///     Loads the panel.
     /// </summary>
     /// <param name="classCode">Join code</param>
     public void LoadViewClass(int classCode)
     {
-        // Get class data.
+        joinCode = classCode;
+        fileManager = SingletonManager.Instance.FileManagerInstance;
         AClass aClass = fileManager.GetClassFile(classCode).Data;
+        Debug.Log(classCode);
+        Debug.Log(aClass.socials);
+        LoadViewClass(aClass);
+    }
+
+    public void LoadViewClass(AClass aClass)
+    {
+        joinCode = aClass.joinCode;
+        foreach (Transform t in content)
+        {
+            if(t.CompareTag("Delete"))
+            {
+                Destroy(t.gameObject);
+            }
+        }
+
+        // If user is class owner, enable the edit button
+        //if (aClass.owner.Equals(fileManager.AccountFile.Data.Username)) editButton.SetActive(true);
 
         // Update text
         classTitle.SetText(aClass.name);
-        descriptionText.SetText(aClass.description);
-        joinText.SetText(aClass.howToJoin);
 
-        // If user is class owner, enable the edit button
-        if(aClass.owner.Equals(fileManager.AccountFile.Data.Username)) editButton.SetActive(true);
+        List<string> text = aClass.text;
+        GameObject newTitle;
+        for (int i = 0; i < text.Count; i++)
+        {
+            // title
+            if (i % 2 == 0)
+            {
+                newTitle = Instantiate(titlePrefab, content);
+                newTitle.GetComponent<TMP_Text>().SetText(text[i]);
+            }
+            else
+            {
+                newTitle = Instantiate(textPrefab, content);
+                newTitle.GetComponent<TMP_Text>().SetText(text[i]);
+            }
+        }
+        socialTitle.SetAsLastSibling();
+        socialsContent.SetAsLastSibling();
 
-        foreach(Transform t in socialsContent)
+        foreach (Transform t in socialsContent)
         {
             Destroy(t.gameObject);
         }
 
-        foreach(SocialLink s in aClass.socials)
+        foreach (SocialLink s in aClass.socials)
         {
             GameObject newSocial = Instantiate(socialPrefab, socialsContent);
 
@@ -56,9 +98,21 @@ public class ViewClass : MonoBehaviour
             });
         }
 
+        //membersContent.SetAsLastSibling();
+
+        //foreach (Transform t in membersContent)
+        //{
+        //    Destroy(t.gameObject);
+        //}
+
+        //foreach (string s in aClass.members)
+        //{
+        //    GameObject newMember = Instantiate(memberPrefab, membersContent);
+        //    // Code
+        //}
     }
 
-    private void Start()
+    private void Awake()
     {
         fileManager = SingletonManager.Instance.FileManagerInstance;
     }
